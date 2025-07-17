@@ -8,7 +8,7 @@ stages{
 stage('CheckoutCode'){
 steps{
 git branch: 'development', changelog: false, credentialsId: 'd1ab30c6-ca84-433d-96b9-c69a9527a71c', poll: false, 
-url: 'https://github.com/uptimecarer/maven-web-application.git'
+url: 'https://github.com/uptimecarer/MBP-maven-web-application.git'
 }
 }
 //Build
@@ -33,7 +33,7 @@ sh "mvn clean deploy"
 stage('DeployAppIntoAppServer'){
 steps{
 sshagent(['327ed8ea-a078-4e1e-8435-ba4738d26d4b']) {
-    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.126.157.153:/opt/tomcat9/webapps/"
+    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.233.31.80:/opt/tomcat9/webapps/"
       }
 }
 }
