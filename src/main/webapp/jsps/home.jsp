@@ -11,7 +11,7 @@
 <body>
 <h1 align="center">Welcome to Uptime Career. Maharasthra,India</h1>
 <h1 align="center"> In Uptime Career Learning Devops with Real Time scnerios</h1>
-<h1 align="center"> Hi, I am Raveendra. This is Test Branch</h1>
+<h1 align="center"> Hi, I am Raveendra. This is UAT Branch</h1>
 <hr>
 <br>
 	<h1><h3> Server Side IP Address </h3><br>
