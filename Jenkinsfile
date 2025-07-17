@@ -1,7 +1,7 @@
 node{
     def mavenHome = tool name :'maven-3.9.10'
     stage('CheckoutCode'){
-        git branch: 'test', changelog: false, credentialsId: 'd1ab30c6-ca84-433d-96b9-c69a9527a71c', 
+        git branch: 'uat', changelog: false, credentialsId: 'd1ab30c6-ca84-433d-96b9-c69a9527a71c', 
         poll: false, url: 'https://github.com/uptimecarer/MBP-maven-web-application.git'
     }
     stage('CreateMavenBuildArtifact'){
