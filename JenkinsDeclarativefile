@@ -1,0 +1,41 @@
+pipeline{
+agent any
+tools{
+maven 'maven-3.9.10'
+}
+//CheckoutCode
+stages{
+stage('CheckoutCode'){
+steps{
+git branch: 'development', changelog: false, credentialsId: 'd1ab30c6-ca84-433d-96b9-c69a9527a71c', poll: false, 
+url: 'https://github.com/uptimecarer/maven-web-application.git'
+}
+}
+//Build
+stage('CreateMavenBuildArtifact'){
+steps{
+sh "mvn clean package"
+}
+}
+//Create Maven Artifact
+stage('CheckMavenBuildArtifactSonarCodeReport'){
+steps{
+sh "mvn clean sonar:sonar"
+}
+}
+//UploadArtifactInToNexus
+stage('UploadArtifactInToNexus'){
+steps{
+sh "mvn clean deploy"
+}
+}
+//Deploy App into AppServer
+stage('DeployAppIntoAppServer'){
+steps{
+sshagent(['327ed8ea-a078-4e1e-8435-ba4738d26d4b']) {
+    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.126.157.153:/opt/tomcat9/webapps/"
+      }
+}
+}
+}//stages closing
+}//pipeline closing
