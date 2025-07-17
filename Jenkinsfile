@@ -4,10 +4,10 @@ node{
         git branch: 'development', changelog: false, credentialsId: 'd1ab30c6-ca84-433d-96b9-c69a9527a71c', 
         poll: false, url: 'https://github.com/uptimecarer/MBP-maven-web-application.git'
     }
-    stage('CreateMavenBuildArtifact'){
+    stage('MavenBuildArtifact'){
        sh "${mavenHome}/bin/mvn clean package"
     }
-	stage('CreateSonarqube Report'){
+	stage('Sonarqube Report'){
 	sh "${mavenHome}/bin/mvn clean sonar:sonar"
 	}
 	stage('UploadArtifactInToNexus'){
